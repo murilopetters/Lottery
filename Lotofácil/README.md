@@ -1,87 +1,102 @@
-# Lotofácil - Análise Histórica e Sugestão de Números
+# Sorteador de Números para Lotofácil
 
-Este repositório contém um script em Python para realizar a análise histórica dos resultados da Lotofácil e fornecer uma sugestão de combinação de números baseada em padrões e insights extraídos.
+Este projeto fornece uma ferramenta automatizada para análise de dados históricos da Lotofácil e geração de combinações de números para apostas. Utilizando bibliotecas do Python, como `pandas` e `openpyxl`, o script analisa a frequência de números sorteados em concursos anteriores e gera sugestões de combinações baseadas em padrões observados.
 
 ## Funcionalidades
 
-1. **Análise de Dados**
-   - Frequência de cada número sorteado.
-   - Porcentagem de pares e ímpares em todos os concursos.
-   - Distribuição de números por décadas (1-10, 11-20, 21-25).
-   - Repetição de números entre concursos consecutivos.
+1. **Análise de Dados**:
+   - Frequência dos números mais sorteados.
+   - Frequência dos números menos sorteados.
+   - Porcentagem de números pares e ímpares sorteados.
+   - Outras análises baseadas em distribuições históricas.
 
-2. **Sugestão de Números**
-   - Gera uma lista com os 25 números mais frequentes para serem utilizados em apostas.
+2. **Sugestão de Combinações**:
+   - Top 15 números mais sorteados.
+   - Top 15 números menos sorteados.
+   - Combinação balanceada de pares e ímpares.
+   - Combinação de números mais e menos sorteados.
+   - Distribuição equilibrada baseada em frequências.
 
-3. **Saída Organizada em Excel**
-   - O script gera um arquivo Excel chamado `analise_lotofacil.xlsx`, contendo:
-     - Frequência de cada número.
-     - Análise de pares e ímpares.
-     - Distribuição por décadas.
-     - Repetição de números entre concursos.
-     - Sugestão de números para apostas.
+3. **Exportação para Excel**:
+   - As análises e combinações são exportadas para um arquivo Excel, com abas organizadas por tipo de análise.
 
-## Requisitos
+## Como Usar
 
-- Python 3.8+
-- Bibliotecas Python:
-  - `pandas`
-  - `openpyxl`
+### Pré-requisitos
 
-Para instalar as dependências, execute:
+Certifique-se de ter instalado:
+- Python 3.x
+- Bibliotecas `pandas` e `openpyxl`.
+
+### Instalação de Bibliotecas
+
+No terminal, execute:
 ```bash
-pip install -r requirements.txt
+pip install pandas openpyxl
 ```
 
-## Como Utilizar
+### Estrutura do Projeto
 
-1. **Prepare o arquivo de entrada**:
-   - Crie um arquivo Excel chamado `resultados.xlsx` e coloque-o na mesma pasta do script.
-   - O formato do arquivo deve ser:
-     - **Coluna 1**: Número do concurso.
-     - **Colunas 2 a 16**: Números sorteados.
-
-2. **Execute o script**:
-   - Navegue até a pasta do projeto:
-     ```bash
-     cd D:/GitHub/Lottery/Lotofácil
-     ```
-   - Execute o script:
-     ```bash
-     python sorteador.py
-     ```
-
-3. **Confira a Saída**:
-   - O arquivo `analise_lotofacil.xlsx` será gerado na mesma pasta, contendo todas as análises e sugestões.
-
-## Estrutura do Projeto
+O script está configurado para ser executado dentro do repositório, com os seguintes arquivos:
 
 ```
 Lottery/
-|— Lotofácil/
-   |— resultados.xlsx    # Arquivo de entrada com os resultados históricos
-   |— sorteador.py       # Script principal
-   |— analise_lotofacil.xlsx # Saída gerada pelo script
-   |— requirements.txt   # Dependências do projeto
+├── Lotofácil/
+│   ├── resultados.xlsx
+│   ├── sorteador.py
+│   └── Combinacoes_Lotofacil.xlsx
+└── README.md
 ```
 
-## Exemplo de Saída
+- **resultados.xlsx**: Contém os resultados históricos da Lotofácil, organizados conforme o formato esperado pelo script.
+- **sorteador.py**: Script Python que realiza as análises e gera as combinações.
+- **Combinacoes_Lotofacil.xlsx**: Arquivo gerado pelo script contendo as análises e combinações sugeridas.
 
-O arquivo `analise_lotofacil.xlsx` conterá as seguintes abas:
+### Formato do Arquivo de Entrada (`resultados.xlsx`)
 
-1. **Frequência dos Números**: Tabela com a contagem de vezes que cada número foi sorteado.
-2. **Pares e Ímpares**: Percentual de números pares e ímpares sorteados.
-3. **Distribuição por Décadas**: Quantidade de números sorteados em cada intervalo (1-10, 11-20, 21-25).
-4. **Repetição de Números**: Percentual de números que se repetem em relação ao concurso anterior.
-5. **Sugestão de Números**: Lista dos 25 números mais frequentes para a sua aposta.
+- O arquivo deve conter:
+  - **Coluna 1**: Número do concurso.
+  - **Colunas 2 a 16**: Números sorteados em cada concurso.
+
+Exemplo:
+```
+Concurso   Dezena 1   Dezena 2   ...   Dezena 15
+1          1          3                25
+2          2          5                22
+...
+```
+
+### Executando o Script
+
+1. Navegue até a pasta `Lotofácil`:
+```bash
+cd D:\GitHub\Lottery\Lotofácil
+```
+
+2. Execute o script:
+```bash
+python sorteador.py
+```
+
+3. O arquivo `Combinacoes_Lotofacil.xlsx` será gerado na pasta `Lotofácil` com as seguintes abas:
+   - **Mais Sorteados**: Lista dos 15 números mais sorteados.
+   - **Menos Sorteados**: Lista dos 15 números menos sorteados.
+   - **Pares**: Lista dos 15 números pares mais sorteados.
+   - **Ímpares**: Lista dos 15 números ímpares mais sorteados.
+   - **Top e Menos**: Combinação de 7 números mais sorteados e 8 menos sorteados.
+   - **Balanceada**: Combinação equilibrada baseada nas frequências.
+   - **Frequência**: Frequência completa de todos os números.
+
+## Modificações Recentes
+
+- **Alteração do Script**: Agora, o script salva diretamente o arquivo Excel na pasta `Lotofácil`.
+- **Redução dos Números Gerados**: A combinação principal foi ajustada para gerar apenas 15 números, com base em frequência histórica.
+- **Novas Combinações**: Adicionadas 9 combinações diferentes, incluindo distribuição balanceada e combinações de pares e ímpares.
 
 ## Contribuições
 
-Contribuições são bem-vindas! Fique à vontade para abrir uma *issue* ou enviar um *pull request* com melhorias.
+Sugestões e melhorias são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
 
-## Aviso Legal
+## Licença
 
-Este projeto é apenas para fins educacionais e de entretenimento. Não há garantias de ganho em apostas baseadas nas análises fornecidas.
-
----
-**Boa sorte nas suas apostas!** 🍀
+Este projeto é distribuído sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
